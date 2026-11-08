@@ -1,6 +1,8 @@
 # Discrete Flow Matching — a visual field guide
 
-An interactive, dependency-free teaching website. Four binary tiles explain generative modeling before any downstream application. Paired with [`discrete-diffusion-explained`](../discrete-diffusion-explained/).
+**[Open the interactive website](https://hi-ashutosh.github.io/discrete-flow-matching-explained/)** · [GitHub repository](https://github.com/hi-ashutosh/discrete-flow-matching-explained)
+
+An interactive, dependency-free teaching website. Four binary tiles explain generative modeling before any downstream application. Paired with [`discrete-diffusion-explained`](https://hi-ashutosh.github.io/discrete-diffusion-explained/).
 
 ![Presentation view of the interactive teaching site](preview.png)
 
@@ -35,22 +37,21 @@ node --test tests/core.test.mjs
 
 Python 3.9+ and a modern Node.js version with the built-in test runner are enough. There are no third-party dependencies. `npm test` runs the same Node checks; `npm start` serves the website on port 8000.
 
-## Publish with GitHub Pages
+## Deployment with GitHub Pages
 
-This folder is a standalone local Git repository. Create an empty GitHub repository named **discrete-flow-matching-explained** (do not add a README on GitHub), then:
+This repository publishes automatically from **main → /(root)**. Its live URL is [https://hi-ashutosh.github.io/discrete-flow-matching-explained/](https://hi-ashutosh.github.io/discrete-flow-matching-explained/).
+
+After making changes locally:
 
 ```sh
 git add .
-git commit -m "Add interactive discrete flow matching teaching site"
-git remote add origin https://github.com/YOUR_USERNAME/discrete-flow-matching-explained.git
-git push -u origin main
+git commit -m "Update the teaching site"
+git push
 ```
 
-If a local initial commit already exists, skip the first two commands unless you have made further changes. In GitHub: **Settings → Pages → Build and deployment → Deploy from a branch → main → /(root) → Save**. `.nojekyll` ensures the static files are served directly. GitHub Pages availability depends on your repository visibility and account plan.
+GitHub rebuilds Pages after a push. Check the repository’s Actions tab for deployment status. `.nojekyll` serves the static assets directly; there is no application build step. The companion site links work because both projects are hosted under the same account.
 
-See [GitHub’s publishing-source documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
-
-The resulting URL is `https://YOUR_USERNAME.github.io/discrete-flow-matching-explained/`. All assets use relative paths, so project subpaths work. Publish both repositories under the same account with the proposed names to enable their companion links. No credentials or GitHub account details are embedded in the files. No remote repository is created by this local project.
+For a fork, configure **Settings → Pages → Build and deployment → Deploy from a branch → main → /(root)**. See [GitHub’s publishing-source documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
 
 ## Files
 
