@@ -2,7 +2,7 @@
 
 **[Open the interactive website](https://hi-ashutosh.github.io/discrete-flow-matching-explained/)** · [GitHub repository](https://github.com/hi-ashutosh/discrete-flow-matching-explained)
 
-An interactive, dependency-free teaching website. Four binary tiles explain generative modeling before any downstream application. Paired with [`discrete-diffusion-explained`](https://hi-ashutosh.github.io/discrete-diffusion-explained/).
+An interactive, dependency-free teaching website. An 8×8 binary-image explorer explains source-to-target generation. An optional four-pixel laboratory exposes exact state probabilities and trainable objectives. Paired with [`discrete-diffusion-explained`](https://hi-ashutosh.github.io/discrete-diffusion-explained/).
 
 ![Presentation view of the interactive teaching site](preview.png)
 
@@ -20,19 +20,20 @@ To serve both companion repositories together, run `python3 -m http.server 8000`
 
 ## What to try
 
-1. Press Play or scrub the time slider. Track the outlined sample and compare population bars with exact marginals.
-2. Change the two target patterns, their mixture weight, and the schedule or number of steps.
-3. Choose **Trainable**, train for 40 epochs, and compare again. Repeat training or reset it.
-4. Click a histogram state to inspect its jump rates or reverse probabilities.
+1. Press Play in the image explorer. Follow a selected 8×8 image and a gallery of 24 independent samples.
+2. Change the digit dataset, class mixture, source type (uniform or masked), schedule, and number of steps.
+3. Click a gallery image and a pixel to inspect clean-pixel beliefs, candidate endpoints, and jump rates or reverse transition probabilities.
+4. Open the optional four-pixel laboratory to inspect all 16 states on a graph and train a small denoiser.
 5. Open the mathematical explanations. Use **Presentation view** for live teaching; Escape restores the lesson.
 
-Changing the target dataset resets training. The two colors are categorical values. Time sliders replay one seeded stochastic run; “New random run” changes the seed.
+Changing the four-pixel dataset resets that laboratory’s training; the image explorer uses a separate exact posterior. The two colors are categorical values. Time sliders replay one seeded stochastic run; “New random run” changes the seed.
 
 ## Run the code and checks
 
 ```sh
+python3 image_reference.py
 python3 reference.py
-node --test tests/core.test.mjs
+node --test tests/*.test.mjs
 ```
 
 Python 3.9+ and a modern Node.js version with the built-in test runner are enough. There are no third-party dependencies. `npm test` runs the same Node checks; `npm start` serves the website on port 8000.
@@ -55,6 +56,10 @@ For a fork, configure **Settings → Pages → Build and deployment → Deploy f
 
 ## Files
 
+- `image-model.mjs` / `image-app.mjs`: image mathematics and interactive explorer.
+- `digits.json`: original synthetic pixel-art dataset.
+- `image_reference.py`: independent Python image sampler.
+- `tests/image.test.mjs`: posterior, target-mixture, support, flow, corruption, and reproducibility checks.
 - `index.html`: lesson, equations, references, and accessible controls.
 - `styles.css`: responsive layout; system fonts; no external requests.
 - `model.mjs`: conditional paths, posterior, trainable denoiser, generators, reverse kernels, seeded sampling.
@@ -62,7 +67,19 @@ For a fork, configure **Settings → Pages → Build and deployment → Deploy f
 - `reference.py`: independent standard-library implementation, checks, training, and sampling.
 - `tests/core.test.mjs`: normalization, endpoint limits, master equation, Bayes reversal, exact mass transport, expected gradient identity, training improvement, and seeded Monte Carlo checks.
 
-## Mathematical scope and limitations
+## Image explorer: model and numerical scope
+
+`digits.json` contains 40 original synthetic binary digit images (ten digits × four position shifts). `image-model.mjs` computes the exact Bayesian endpoint posterior over this finite empirical target distribution. It is an oracle teaching denoiser, not a trained neural network. Generation does not choose a destination at initialization.
+
+The three panels show one selectable image, 24 stochastic samples, and a selected pixel’s posterior and transition probabilities. A candidate endpoint panel shows current posterior uncertainty. Exact image matches and nearest-dataset Hamming distance describe the population; these are not calibrated perceptual quality scores. Both sites offer uniform random pixels and an absorbing-mask source.
+
+Uniform-source flow uses coordinate-parallel tau-leaping: dt ≤ 1/240 and maximum per-coordinate event probability ≤ 0.08, with simultaneous changes using pre-step beliefs. This approximates the CTMC. The masked flow uses independent reveal clocks and exact posterior updates. Both stop at t=0.999; no endpoint snap is applied.
+
+Diffusion uses exact finite-step reverse sampling: a fresh clean endpoint is sampled from the current posterior at each step, followed by coordinate-wise conditional bridges. Marginalizing that temporary endpoint gives the exact joint reverse kernel; it is not fixed for the whole run. The target support is therefore exact at the final reverse step. Forward corruption is separately available.
+
+`image_reference.py` provides an independent Python image-diffusion example. The four-pixel `reference.py`, training lab, and gradient proof remain available separately. The state graph is explicitly for the 16-state four-pixel system, not a projection of the 2^64 image space.
+
+## Four-pixel mathematical scope and limitations
 
 The data contains two complete four-bit patterns, with a configurable mixture. Conditional noisy samples factor across coordinates; the marginal distribution need not factor. Both demos use the same uniform-to-clean product path. The browser’s classifier predicts the two complete endpoints, unlike a large token-factorized neural denoiser. Its 25 × 16 logits are trained by exact full-batch cross-entropy; this is real optimization but no neural generalization claim is made.
 

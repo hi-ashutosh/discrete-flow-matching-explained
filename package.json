@@ -1,1 +1,9 @@
-{"name":"discrete-flow-matching-explained","private":true,"type":"module","scripts":{"test":"node --test tests/core.test.mjs","start":"python3 -m http.server 8000"}}
+{
+  "name": "discrete-flow-matching-explained",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "start": "python3 -m http.server 8000"
+  }
+}
