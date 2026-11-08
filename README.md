@@ -36,7 +36,7 @@ python3 reference.py
 node --test tests/*.test.mjs
 ```
 
-Python 3.9+ and a modern Node.js version with the built-in test runner are enough. There are no third-party dependencies. `npm test` runs the same Node checks; `npm start` serves the website on port 8000.
+Python 3.9+ and a modern Node.js version with the built-in test runner are enough. No package installation is needed; the math renderer and fonts are bundled locally. `npm test` runs the same Node checks; `npm start` serves the website on port 8000.
 
 ## Deployment with GitHub Pages
 
@@ -97,3 +97,14 @@ Conditional/marginal squared-loss gradient equivalence is explained with its ass
 This is an original educational implementation, not an official paper reproduction. Sources are cited for the concepts, not copied code or figures.
 
 The two possible clean endpoints are known to the toy classifier. In the diffusion example, even an untrained classifier has the correct final support because of the conditional bridge; training improves posterior weights and intermediate transition probabilities. This dataset is deliberately small enough to enumerate, so direct mixture sampling would be easier than either generative construction.
+
+## Editing the equations
+
+Display equations and inline notation are authored as LaTeX in `math.json`. After editing a formula, run:
+
+```sh
+node render-math.mjs
+node render-math.mjs --check
+```
+
+The checked-in HTML contains pre-rendered KaTeX with semantic MathML. Browsers load only local CSS and font files, so the formulas also appear without JavaScript or external services. Long equations use aligned lines and scroll within their own card on narrow screens. KaTeX 0.19.1 and its license are bundled in `vendor/katex/`; the renderer is used only when updating the site’s equations.

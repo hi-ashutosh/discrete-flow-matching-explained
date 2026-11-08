@@ -1,0 +1,242 @@
+{
+  "display-1": {
+    "tex": "q_a(x\\mid z)=\\prod_{i=1}^{64}\\left[\\frac{1-a}{2}+a\\,\\mathbf{1}_{\\{x_i=z_i\\}}\\right]",
+    "display": true
+  },
+  "display-2": {
+    "tex": "p_a(x)=\\sum_z p_{\\mathrm{data}}(z)\\,q_a(x\\mid z)",
+    "display": true
+  },
+  "display-3": {
+    "tex": "p(z\\mid x,a)\\propto p_{\\mathrm{data}}(z)\\,q_a(x\\mid z)",
+    "display": true
+  },
+  "display-4": {
+    "tex": "\\begin{aligned}&R_t(\\text{flip pixel }i\\mid x)\\\\[4pt]&\\quad=\\frac{\\kappa^{\\prime}(t)}{1-\\kappa(t)}\\,\\mathbb{P}(Z_i\\ne x_i\\mid x,t)\\end{aligned}",
+    "display": true
+  },
+  "display-5": {
+    "tex": "q_t(x\\mid z)=\\prod_{i=1}^{4}\\left[\\frac{1-\\kappa(t)}{2}+\\kappa(t)\\,\\mathbf{1}_{\\{x_i=z_i\\}}\\right]",
+    "display": true
+  },
+  "display-6": {
+    "tex": "p_t(x)=\\sum_z p_{\\mathrm{data}}(z)\\,q_t(x\\mid z)",
+    "display": true
+  },
+  "display-7": {
+    "tex": "R_t(x,x^{(i)}\\mid z)=\\frac{\\kappa^{\\prime}(t)}{1-\\kappa(t)}\\,\\mathbf{1}_{\\{z_i\\ne x_i\\}}",
+    "display": true
+  },
+  "display-8": {
+    "tex": "R_t(x,y)=\\sum_z p(z\\mid x,t)\\,R_t(x,y\\mid z)",
+    "display": true
+  },
+  "display-9": {
+    "tex": "p(z\\mid x,t)=\\frac{p_{\\mathrm{data}}(z)\\,q_t(x\\mid z)}{p_t(x)}",
+    "display": true
+  },
+  "inline-10": {
+    "tex": "x^{(i)}",
+    "display": false
+  },
+  "inline-11": {
+    "tex": "x",
+    "display": false
+  },
+  "inline-12": {
+    "tex": "i",
+    "display": false
+  },
+  "display-13": {
+    "tex": "\\begin{aligned}\\frac{d p_t(y)}{dt}&=\\underbrace{\\sum_{x\\ne y}p_t(x)\\,R_t(x,y)}_{\\text{incoming probability}}\\\\[8pt]&\\quad-\\underbrace{p_t(y)\\sum_{x\\ne y}R_t(y,x)}_{\\text{outgoing probability}}\\end{aligned}",
+    "display": true
+  },
+  "display-14": {
+    "tex": "\\frac{d\\boldsymbol{p}_t}{dt}=R_t^{\\mathsf T}\\boldsymbol{p}_t",
+    "display": true
+  },
+  "display-15": {
+    "tex": "\\mathcal{L}(\\theta)=\\mathbb{E}_{t,Z,X}\\!\\left[-\\log d_\\theta(Z\\mid X,t)\\right]",
+    "display": true
+  },
+  "display-16": {
+    "tex": "R_t^\\theta(x,y)=\\mathbb{E}_{Z\\sim d_\\theta(\\cdot\\mid x,t)}\\!\\left[R_t(x,y\\mid Z)\\right]",
+    "display": true
+  },
+  "display-17": {
+    "tex": "\\begin{aligned}&\\mathbb{E}\\!\\left[\\left\\lVert f_\\theta(X)-U(X,Z)\\right\\rVert^2\\right]\\\\[6pt]&\\quad=\\mathbb{E}\\!\\left[\\left\\lVert f_\\theta(X)-u(X)\\right\\rVert^2\\right]\\\\[6pt]&\\qquad+\\mathbb{E}\\!\\left[\\left\\lVert U(X,Z)-u(X)\\right\\rVert^2\\right]\\end{aligned}",
+    "display": true
+  },
+  "display-18": {
+    "tex": "\\begin{aligned}&\\mathbb{E}_{Z,X}\\!\\left[-\\log d_\\theta(Z\\mid X)\\right]\\\\[6pt]&\\quad=\\mathbb{E}_X\\!\\left[H\\bigl(p(Z\\mid X)\\bigr)\\right]\\\\[6pt]&\\qquad+\\mathbb{E}_X\\!\\left[\\operatorname{KL}\\!\\left(p(Z\\mid X)\\,\\middle\\|\\,d_\\theta(Z\\mid X)\\right)\\right]\\end{aligned}",
+    "display": true
+  },
+  "inline-19": {
+    "tex": "z",
+    "display": false
+  },
+  "inline-20": {
+    "tex": "a",
+    "display": false
+  },
+  "inline-21": {
+    "tex": "a=\\kappa(t)",
+    "display": false
+  },
+  "inline-22": {
+    "tex": "a=\\bar\\alpha_k=1-k/T",
+    "display": false
+  },
+  "inline-23": {
+    "tex": "\\kappa",
+    "display": false
+  },
+  "inline-24": {
+    "tex": "\\bar\\alpha",
+    "display": false
+  },
+  "inline-25": {
+    "tex": "Z",
+    "display": false
+  },
+  "inline-26": {
+    "tex": "p_{\\mathrm{data}}",
+    "display": false
+  },
+  "inline-27": {
+    "tex": "x",
+    "display": false
+  },
+  "inline-28": {
+    "tex": "\\kappa(0)=0",
+    "display": false
+  },
+  "inline-29": {
+    "tex": "\\kappa(1)=1",
+    "display": false
+  },
+  "inline-30": {
+    "tex": "Z",
+    "display": false
+  },
+  "inline-31": {
+    "tex": "\\kappa(t)",
+    "display": false
+  },
+  "inline-32": {
+    "tex": "\\kappa(t)=t",
+    "display": false
+  },
+  "inline-33": {
+    "tex": "\\kappa(t)=t^2",
+    "display": false
+  },
+  "inline-34": {
+    "tex": "\\kappa(t)=2t-t^2",
+    "display": false
+  },
+  "inline-35": {
+    "tex": "R_t(x,x)=-\\sum_{y\\ne x}R_t(x,y)",
+    "display": false
+  },
+  "inline-36": {
+    "tex": "R_t",
+    "display": false
+  },
+  "inline-37": {
+    "tex": "\\boldsymbol{p}_t",
+    "display": false
+  },
+  "inline-38": {
+    "tex": "\\Delta t",
+    "display": false
+  },
+  "inline-39": {
+    "tex": "x\\to y",
+    "display": false
+  },
+  "inline-40": {
+    "tex": "R_t(x,y)\\,\\Delta t",
+    "display": false
+  },
+  "inline-41": {
+    "tex": "Z",
+    "display": false
+  },
+  "inline-42": {
+    "tex": "t",
+    "display": false
+  },
+  "inline-43": {
+    "tex": "X",
+    "display": false
+  },
+  "inline-44": {
+    "tex": "q_t(\\cdot\\mid Z)",
+    "display": false
+  },
+  "inline-45": {
+    "tex": "d_\\theta(Z\\mid X,t)",
+    "display": false
+  },
+  "inline-46": {
+    "tex": "Z",
+    "display": false
+  },
+  "inline-47": {
+    "tex": "d_\\theta",
+    "display": false
+  },
+  "inline-48": {
+    "tex": "Z",
+    "display": false
+  },
+  "inline-49": {
+    "tex": "Z",
+    "display": false
+  },
+  "inline-50": {
+    "tex": "X",
+    "display": false
+  },
+  "inline-51": {
+    "tex": "U(X,Z)",
+    "display": false
+  },
+  "inline-52": {
+    "tex": "Z",
+    "display": false
+  },
+  "inline-53": {
+    "tex": "u(X)=\\mathbb{E}[U(X,Z)\\mid X]",
+    "display": false
+  },
+  "inline-54": {
+    "tex": "\\mathbb{E}[U-u\\mid X]=0",
+    "display": false
+  },
+  "inline-55": {
+    "tex": "\\theta",
+    "display": false
+  },
+  "inline-56": {
+    "tex": "\\theta",
+    "display": false
+  },
+  "inline-57": {
+    "tex": "\\theta",
+    "display": false
+  },
+  "inline-58": {
+    "tex": "\\kappa(t)=t",
+    "display": false
+  },
+  "inline-59": {
+    "tex": "t=0.999",
+    "display": false
+  },
+  "inline-60": {
+    "tex": "\\Delta t",
+    "display": false
+  }
+}

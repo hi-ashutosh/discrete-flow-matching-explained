@@ -8,3 +8,15 @@
 @media(max-width:720px){#image-explore>.section-heading,#image-math>.section-heading{display:block}#image-explore>.section-heading .section-label,#image-math>.section-heading .section-label{display:block;padding-top:0;margin-bottom:12px}#image-gallery{grid-template-columns:repeat(4,1fr)}}
 
 .image-presentation-heading{display:none}.image-presentation .image-presentation-heading{display:block;font:30px/1.2 var(--serif);margin:0 0 20px}
+
+/* Pre-rendered LaTeX: readable formulas, semantic MathML, local KaTeX fonts. */
+.equation{font-family:inherit;font-size:16px;line-height:1.6;padding:20px;overflow:visible;min-width:0;max-width:100%}
+.math-display{max-width:100%;overflow-x:auto;overflow-y:hidden;padding:6px 2px 12px;scrollbar-width:thin;scrollbar-color:var(--line) transparent;font-size:16px}
+.math-display+.math-display{margin-top:12px}
+.math-display .katex-display{margin:0;text-align:left}
+.math-display .katex-display>.katex{text-align:left;white-space:nowrap}
+.math-display .katex{font-size:1.1em}
+.math-inline .katex{font-size:1.08em}
+.equation-note{font-size:13px;color:var(--muted);margin-top:-7px}
+.detail-body{min-width:0;max-width:min(880px,100%);overflow-wrap:break-word}
+@media(max-width:720px){.equation{padding:14px 10px}.math-display{font-size:15px;padding-bottom:12px}.math-display+.math-display{margin-top:10px}}
